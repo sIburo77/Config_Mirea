@@ -1,5 +1,5 @@
 from src.console import Console
-import csv
+import configparser
 import threading
 import tarfile
 
@@ -14,10 +14,10 @@ class BashFake:
         self.console = Console(self.cmd_processing)
 
         # Load config
-        with open('./config.csv', newline='') as csvfile:
-            spamreader = csv.reader(csvfile, delimiter=',')
-            for row in spamreader:
-                self.config[row[0]] = row[1]
+        config_parser = configparser.ConfigParser()
+        config_parser.read('./config.ini')
+        self.config["file_system"] = config_parser["config"]["file_system"]
+        self.config["start_script"] = config_parser["config"]["start_script"]
 
         # Set current path
         self.path = self.config["file_system"].replace(".tar", "") + "/"
