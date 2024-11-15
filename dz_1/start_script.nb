@@ -1,0 +1,5 @@
+ls
+du home
+cd etc
+whoami 
+mkdir mydir
