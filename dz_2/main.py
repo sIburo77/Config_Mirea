@@ -1,14 +1,19 @@
 import sys
 import requests
 from bs4 import BeautifulSoup
+from graphviz import Digraph
 
-def generate_mermaid(package_name, dependencies):
-    mermaid = f"graph TD for \"{package_name}\"\n"  # Добавляем заголовок с именем пакета
+def generate_graph(package_name, dependencies):
+    dot = Digraph(comment=package_name)  # Создаём объект графа
+    dot.node(package_name)  # Добавляем узел для основного пакета
+    
     for dep in dependencies:
         # Извлекаем только имя библиотеки без префикса 'so:'
         library_name = dep.split(":")[-1] if ":" in dep else dep
-        mermaid += f'    "{library_name}"\n'  # Каждый пакет выводится как отдельный узел
-    return mermaid
+        dot.node(library_name)  # Добавляем зависимость как узел
+        dot.edge(package_name, library_name)  # Связываем основной пакет с зависимостью
+    
+    return dot
 
 def get_apk_dependencies(package_name, repo_type):
     url = f"https://pkgs.alpinelinux.org/package/edge/{repo_type}/x86_64/{package_name}"
@@ -49,7 +54,7 @@ def get_transitive_dependencies(package_name, collected):
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python main2.py <package_name>")
+        print("Usage: python main.py <package_name>")
         sys.exit(1)
 
     package_name = sys.argv[1]
@@ -60,8 +65,11 @@ def main():
     for deps in all_dependencies.values():
         all_deps_list.extend(deps)
         
-    mermaid_graph = generate_mermaid(package_name, all_deps_list)
-    print(mermaid_graph)
+    dot_graph = generate_graph(package_name, all_deps_list)
+    
+    # Сохраняем граф в файл формата PNG
+    dot_graph.render('graph_output', format='png', cleanup=True)  # Сохраняем изображение графа
+    print("Graph has been saved as 'graph_output.png'")
 
 if __name__ == '__main__':
     main()
