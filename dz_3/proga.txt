@@ -1,0 +1,8 @@
+database_name is [[my_database]];
+max_connections is 10;
+port is .(+ 5000 152);
+@{
+host is [[localhost]];
+user is [[admin]];
+password is [[secret]];
+}

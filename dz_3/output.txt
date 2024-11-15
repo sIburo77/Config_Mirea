@@ -1,0 +1,7 @@
+
+Defined Constants and Values:
+"database_name" : "my_database"
+"max_connections" : "10"
+
+Defined Dictionaries:
+dictionary_1 : {}
