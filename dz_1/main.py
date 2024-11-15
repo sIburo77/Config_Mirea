@@ -133,6 +133,9 @@ class BashFake:
                 self.console.print(self._whoami())
             case "mkdir":
                 self.console.print(self._mkdir(command[1] if len(command) > 1 else ""))
+            case "exit":
+                self.console.print("Exiting...")
+                exit(0)  # Завершение программы с кодом 0 (успешное завершение)
             case _:
                 self.console.print("Unknown command")
 

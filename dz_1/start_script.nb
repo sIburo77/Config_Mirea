@@ -1,5 +1,5 @@
 ls
-du home
 cd etc
+tail
 whoami 
 mkdir mydir

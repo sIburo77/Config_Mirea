@@ -13,7 +13,7 @@ class Console:
         self.path = "/"
 
         self.root = tk.Tk()
-        self.root.title("Not Bash")
+        self.root.title("Fake_Bash")
 
         self.console = scrolledtext.ScrolledText(self.root, wrap=tk.WORD, height=20, width=70, 
                                                  bg=self.bg_color, fg=self.text_color,
@@ -44,7 +44,7 @@ class Console:
         self.console.insert(tk.END, f"{text}\n")
 
     def insert_prompt(self):
-        self.console.insert(tk.END, "user@computer", "user")
+        self.console.insert(tk.END, "user@sIburo77", "user")
         self.console.insert(tk.END, f":{self.path}", "path")
         self.console.insert(tk.END, "$ ")
         self.console.mark_set("insert", tk.END)
