@@ -1,0 +1,44 @@
+[
+    {
+        "command": "LOAD_CONST",
+        "bytes": [
+            0,
+            11,
+            201
+        ],
+        "details": {
+            "A": 35,
+            "B": 905
+        }
+    },
+    {
+        "command": "READ_MEM",
+        "bytes": [
+            8
+        ]
+    },
+    {
+        "command": "WRITE_MEM",
+        "bytes": [
+            0,
+            11,
+            5
+        ],
+        "details": {
+            "A": 44,
+            "B": 517
+        }
+    },
+    {
+        "command": "SHIFT_RIGHT",
+        "bytes": [
+            0,
+            4,
+            235
+        ],
+        "details": {
+            "A": 19,
+            "B": 43
+        }
+    }
+]
